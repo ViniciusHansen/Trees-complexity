@@ -3,7 +3,7 @@
 #include <string.h>
 #include "rbtree.c"
 
-#define RANGE 100
+#include "range.h"
 
 int main(){
     

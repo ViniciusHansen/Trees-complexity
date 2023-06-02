@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "btree.c"
+#include "range.h"
 
-#define RANGE 100
 
 int main(){
 

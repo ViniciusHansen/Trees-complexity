@@ -41,7 +41,7 @@ int pesquisaBinariaArvoreB(NoArvoreB* no, int chave) {
     int inicio = 0, fim = no->total - 1, meio;
 
     while (inicio <= fim) {
-        counter++;
+        //counter++;
 
         meio = (inicio + fim) / 2;
 
@@ -78,7 +78,7 @@ NoArvoreB* localizaNoArvoreB(ArvoreB* arvore, int chave) {
     NoArvoreB *no = arvore->raiz;
 
     while (no != NULL) {
-        counter++;
+        //counter++;
         int i = pesquisaBinariaArvoreB(no, chave);
 
         if (no->filhos[i] == NULL)
@@ -105,14 +105,14 @@ void adicionaChaveNoArvoreB(NoArvoreB* no, NoArvoreB* novo, int chave) {
 }
 
 int transbordoArvoreB(ArvoreB* arvore, NoArvoreB* no) {
-    counter++;
+    //counter++;
     return no->total > arvore->ordem * 2;
 }
 
 NoArvoreB* divideNoArvoreB(ArvoreB* arvore, NoArvoreB* no) {
     int meio = no->total / 2;
     NoArvoreB* novo = criaNoArvoreB(arvore);
-    counter++;
+    //counter++;
     novo->pai = no->pai;
     for (int i = meio + 1; i < no->total; i++) {
         novo->filhos[novo->total] = no->filhos[i];
@@ -137,7 +137,7 @@ void adicionaChaveRecursivoArvoreB(ArvoreB* arvore, NoArvoreB* no, NoArvoreB* no
 
     adicionaChaveNoArvoreB(no, novo, chave);
 
-    counter++;
+    //counter++;
     if (transbordoArvoreB(arvore, no)) {
         int promovido = no->chaves[arvore->ordem];
         novo = divideNoArvoreB(arvore, no);

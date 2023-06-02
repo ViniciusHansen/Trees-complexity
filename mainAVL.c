@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "avltree.c"
-//#include "rbtree.c"
-
-#define RANGE 100
+#include "range.h"
 
 int main(){
     // Inserção AVL
