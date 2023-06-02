@@ -1,5 +1,7 @@
 #include "avltree.h"
 
+#define NUM_EXP 10
+
 Arvore* criar() {
     Arvore *arvore = malloc(sizeof(Arvore));
     arvore->raiz = NULL;
@@ -56,11 +58,11 @@ No* adicionar(Arvore* arvore, int valor) {
 
         arvore->raiz = novo;
 
-        //counter++;
         return novo;
     } else {
         No* no = adicionarNo(arvore->raiz, valor);
         balanceamento(arvore, no);
+        counter++;
         return no;
     }
 }
@@ -221,76 +223,40 @@ No* rdd(Arvore* arvore, No* no) {
     return rsd(arvore, no);
 }
 
-int main(){
-    clock_t inicio, fim;
-    double tempo_execucao;
-    Arvore* a = criar();
-    double medio_tempos[NUM_EXP];
-    int medio_operacoes[NUM_EXP];
-    double pior_tempos[NUM_EXP];
-    int pior_operacoes[NUM_EXP];
-    //caso medio
-    for(int i=0;i<NUM_EXP;i++){
-        inicio = clock(); // Marca o início da contagem de tempo
-        int* v = malloc(NUM_CASOS * sizeof(int));
-        v = gerarCasoMedio();
-        for(int j=0;j<NUM_CASOS;j++){
-            adicionar(a,v[j]);
-        }
-        free(v);
-        fim = clock(); // Marca o final da contagem de tempo
-        medio_operacoes[i] = counter;
-        medio_tempos[i] = (double)(fim - inicio) / CLOCKS_PER_SEC;
-        counter = 0;
-    }
-    //pior caso
-    for(int i=0;i<NUM_EXP;i++){
-        inicio = clock(); // Marca o início da contagem de tempo
-        int* v = malloc(NUM_CASOS * sizeof(int));
-        if (i % 2 == 0) v= gerarPiorCaso1();
-        else v=gerarPiorCaso2();
-        for(int j=0;j<NUM_CASOS;j++){
-            adicionar(a,v[j]);
-        }
-        free(v);
-        fim = clock(); // Marca o final da contagem de tempo
-        pior_operacoes[i] = counter;
-        pior_tempos[i] = (double)(fim - inicio) / CLOCKS_PER_SEC;
-        counter = 0;
-    }
 
-    int medio_media_operacoes = 0;
-    for (int i =0;i<NUM_EXP;i++){
-        medio_media_operacoes += medio_operacoes[i];
+int* gerarCasoMedio(int numero_casos){
+    int* v = malloc(numero_casos * sizeof(int));
+    for (int k=0;k<numero_casos;k++){
+        int valor = rand() % 1000 + 1;
+        v[k] = valor;
     }
-    medio_media_operacoes /= NUM_EXP;
-    
-    double medio_media_tempo =0;
-    for (int i =0;i<NUM_EXP;i++){
-        medio_media_tempo += medio_tempos[i];
-    }
-    medio_media_tempo /= NUM_EXP;
-
-    int pior_media_operacoes = 0;
-    for (int i =0;i<NUM_EXP;i++){
-        pior_media_operacoes += pior_operacoes[i];
-    }
-    pior_media_operacoes /= NUM_EXP;
-
-    double pior_media_tempo = 0;
-    for (int i =0;i<NUM_EXP;i++){
-        pior_media_tempo += pior_tempos[i];
-    }
-    pior_media_tempo /= NUM_EXP;
-
-    printf("\nArvore AVL, %i casos, %i experimentos:\n", NUM_CASOS,NUM_EXP);
-    printf("Caso Médio:\n");
-    printf("Media Tempo de execução: %lf segundos\nem média %i operações\n", medio_media_tempo, medio_media_operacoes);
-    printf("Pior Caso:\n");
-    printf("Media Tempo de execução: %lf segundos\nem média %i operações\n\n", pior_media_tempo, pior_media_operacoes);
-    return 0;
+    return v;
 }
 
-        //printf("In-order: ");
-        //percorrer(a->raiz,visitar);
-        //printf("\n");
+void AvlInsertion(int numero_casos, FILE* arq){
+    
+    double tempo_execucao;
+    Arvore* a = criar();
+    int operacoes[NUM_EXP];
+    
+    //caso medio
+    for(int i=0;i<NUM_EXP;i++){
+        int* v = malloc(numero_casos * sizeof(int));
+        v = gerarCasoMedio(numero_casos);
+        for(int j=0;j<numero_casos;j++){
+            adicionar(a,v[j]);
+        }
+        free(v);
+        operacoes[i] = counter;
+        counter = 0;
+    }
+
+    int media_operacoes = 0;
+    for (int i =0;i<NUM_EXP;i++){
+        media_operacoes += operacoes[i];
+    }
+    media_operacoes /= NUM_EXP;
+    
+    fprintf(arq, "%i, %i\n", numero_casos, media_operacoes);
+    return;
+}

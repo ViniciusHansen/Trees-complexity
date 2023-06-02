@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "gerar_casos.h"
-#include "gerar_casos.c"
+#define NUM_EXP 10
 
 int counter = 0;
 
