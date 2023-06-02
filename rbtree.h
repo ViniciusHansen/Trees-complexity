@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define NUM_EXP 10
 
 int counter = 0;
 

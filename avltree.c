@@ -1,6 +1,6 @@
 #include "avltree.h"
+#include "range.h"
 
-#define NUM_EXP 10
 
 Arvore* criar() {
     Arvore *arvore = malloc(sizeof(Arvore));

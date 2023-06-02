@@ -1,4 +1,5 @@
 #include "rbtree.h"
+#include "range.h"
 
 Arvore* criar() {
     Arvore *arvore = malloc(sizeof(Arvore));

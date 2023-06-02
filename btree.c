@@ -1,4 +1,5 @@
 #include "btree.h"
+#include "range.h"
 
 ArvoreB* criaArvoreB(int ordem) {
     ArvoreB* a = malloc(sizeof(ArvoreB));

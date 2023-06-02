@@ -38,7 +38,7 @@ plt.plot(x4, y4, label='B5')
 plt.plot(x5, y5, label='B10')
 
 # Adicionar legendas e rótulos dos eixos
-plt.title('Operação: Inserção')
+plt.title(f'Operação: Inserção')
 plt.legend()
 plt.xlabel('Número de Nós')
 plt.ylabel('Operações')
