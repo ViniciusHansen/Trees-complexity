@@ -7,7 +7,7 @@
 
 int main(){
     
-    FILE* arq = fopen("RB_insertion.csv", "w");
+    FILE* arq = fopen("data/RB_insertion.csv", "w");
 
     if (arq == NULL) {
         printf("Erro ao criar o arquivo.");
@@ -18,6 +18,6 @@ int main(){
     for(int i=0;i<RANGE;i++)
         RBInsertion(i, arq);
     fclose(arq);
-    printf("AVL Insertion Experiments done!\n");
+    printf("all RB Insertion Experiments done!\n");
     return 0;
 }

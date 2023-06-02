@@ -9,7 +9,7 @@
 int main(){
     // Inserção AVL
     FILE* arq;
-    arq = fopen("AVL_insertion.csv", "w");
+    arq = fopen("data/AVL_insertion.csv", "w");
 
     if (arq == NULL) {
         printf("Erro ao criar o arquivo.");
@@ -20,6 +20,6 @@ int main(){
     for(int i=0;i<RANGE;i++)
         AvlInsertion(i, arq);
     fclose(arq);
-    printf("AVL Insertion Experiments done!\n");
+    printf("all AVL Insertion Experiments done!\n");
     return 0;
 }

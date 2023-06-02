@@ -52,7 +52,7 @@ No* adicionar(Arvore* arvore, int valor) {
     if (vazia(arvore)) {
         arvore->raiz = criarNo(arvore, arvore->nulo, valor);
         arvore->raiz->cor = Preto;
-        //counter++;
+        counter++;
 
         return arvore->raiz;
     } else {
